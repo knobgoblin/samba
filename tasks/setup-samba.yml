@@ -23,6 +23,9 @@
 
 - name: Restart sshd server to consume updated configuration
   service:
-    name: samba
+    name:
+      - samba
+      - smbd
+      - nmbd
     state: restarted
   when: not samba_debug
