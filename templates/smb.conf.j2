@@ -1,0 +1,23 @@
+#======================= Global Settings =======================
+
+[global]
+   workgroup = {{ samba_workgroup }}
+   log file = {{ samba_logfile }}
+   max log size = {{ samba_logsize }}
+   logging = {{ samba_logtype }}
+   panic action = {{ samba_panic_action }}
+   server role =  {{ samba_role }}
+   obey pam restrictions = {{ samba_pam }}
+   unix password sync =  {{ samba_password_sync }}
+   passwd program =  {{ samba_password_program }}
+   passwd chat = {{ samba_password_chat }}
+   pam password change = {{ samba_pam_password_change }}
+   map to guest = {{ samba_map_to_guest }}
+
+#====================== Extra Configuration =====================
+
+{{ samba_extras }}
+
+#======================= Share Definitions =======================
+
+{{ samba_shares }}

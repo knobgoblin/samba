@@ -1,0 +1,13 @@
+---
+- name: Set debug Samba variables
+  set_fact:
+    samba_conf_directory: "{{ samba_debug_config_path }}"
+    samba_conf_directory_owner: "{{ samba_debug_owner }}"
+    samba_conf_directory_group: "{{ samba_debug_group }}"
+    samba_owner: "{{ samba_debug_owner }}"
+    samba_group: "{{ samba_debug_group }}"
+
+- name: Add nobody group 
+  group:
+    name: nobody
+    state: present

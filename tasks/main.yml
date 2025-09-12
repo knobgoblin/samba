@@ -1,0 +1,5 @@
+---
+- include_tasks: debug.yml
+  when: samba_debug
+
+- include_tasks: setup-samba.yml

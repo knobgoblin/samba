@@ -1,0 +1,28 @@
+---
+- name: Ensure that sshd is installed and up to date
+  apt:
+    name: samba
+    state: latest
+  when: not samba_debug
+
+- name: Create sshd configuration directory
+  file:
+    path: "{{ samba_conf_directory }}"
+    state: directory
+    owner: "{{ samba_conf_directory_owner }}"
+    group: "{{ samba_conf_directory_group }}"
+    mode: '0755'
+
+- name: Create sshd configuration file
+  template:
+    src: smb.conf.j2
+    dest: "{{ samba_conf_directory }}/smb.conf"
+    owner: "{{ samba_conf_directory_owner }}"
+    group: "{{ samba_conf_directory_group }}"
+    mode: '0644'
+
+- name: Restart sshd server to consume updated configuration
+  service:
+    name: samba
+    state: restarted
+  when: not samba_debug

@@ -1,0 +1,39 @@
+---
+samba_conf_directory: /etc/samba
+samba_conf_directory_owner: root
+samba_conf_directory_group: root
+samba_owner: root
+samba_group: root
+
+# Basic configuration
+
+samba_workgroup: WORKGROUP
+samba_logfile: /var/log/samba/log.%m
+samba_logsize: 5000
+samba_logtype: file
+samba_panic_action: /usr/share/samba/panic-action %d
+samba_role: standalone server
+samba_pam: yes
+samba_password_sync: yes
+samba_password_program: /usr/bin/passwd %u
+samba_password_chat: *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+samba_pam_password_change: yes
+samba_map_to_guest: bad user
+
+samba_shares: |
+  [homes]
+    comment = Home Directories
+    browseable = no
+    read only = no
+    create mask = 0700
+    directory mask = 0700
+    valid users = %S
+
+samba_extras: ''
+
+# Debug
+
+samba_debug: False
+samba_debug_config_path: /var/tmp/samba_debug
+samba_debug_owner: 'nobody'
+samba_debug_group: 'nobody'
