@@ -1,11 +1,11 @@
 ---
-- name: Ensure that sshd is installed and up to date
+- name: Ensure that Samba is installed and up to date
   apt:
     name: samba
     state: latest
   when: not samba_debug
 
-- name: Create sshd configuration directory
+- name: Create Samba configuration directory
   file:
     path: "{{ samba_conf_directory }}"
     state: directory
@@ -13,7 +13,7 @@
     group: "{{ samba_conf_directory_group }}"
     mode: '0755'
 
-- name: Create sshd configuration file
+- name: Create Samba configuration file
   template:
     src: smb.conf.j2
     dest: "{{ samba_conf_directory }}/smb.conf"
@@ -21,11 +21,12 @@
     group: "{{ samba_conf_directory_group }}"
     mode: '0644'
 
-- name: Restart sshd server to consume updated configuration
+- name: Restart Samba server to consume updated configuration
   service:
-    name:
-      - samba
-      - smbd
-      - nmbd
+    name: "{{ item }}"
     state: restarted
+  loop:
+    - samba
+    - smbd
+    - nmbd
   when: not samba_debug
