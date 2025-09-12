@@ -16,7 +16,7 @@ samba_role: standalone server
 samba_pam: yes
 samba_password_sync: yes
 samba_password_program: /usr/bin/passwd %u
-samba_password_chat: *Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .
+samba_password_chat: '*Enter\snew\s*\spassword:* %n\n *Retype\snew\s*\spassword:* %n\n *password\supdated\ssuccessfully* .'
 samba_pam_password_change: yes
 samba_map_to_guest: bad user
 
